@@ -25,9 +25,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import { ControllerComponent } from './controller/controller.component';
 
 @NgModule({
-  declarations: [AppComponent, WifiConfigComponent, DashboardComponent, StatusComponent, SettingComponent],
+  declarations: [AppComponent, WifiConfigComponent, DashboardComponent, StatusComponent, SettingComponent, ControllerComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

@@ -5,7 +5,10 @@ import { WifiConfigComponent } from './wifi-config/wifi-config.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StatusComponent } from './dashboard/status/status.component';
 import { SettingComponent } from './dashboard/setting/setting.component';
+import { ControllerComponent } from './controller/controller.component';
+
 import { DashboardResolverService } from './services/dashboard/dashboard-resolver.service';
+import { ConfigResolverService } from './services/config/config-resolver.service';
 
 
 
@@ -23,18 +26,22 @@ const routes: Routes = [
         path: "status",
         component: StatusComponent,
         resolve: {
-          userdata: DashboardResolverService
+          status: DashboardResolverService
         }
       },
       {
         path: "setting",
-        component: SettingComponent
+        component: SettingComponent,
+        resolve: {
+          config: ConfigResolverService
+        }
+      },
+      {
+        path: "controller",
+        component: ControllerComponent
       }
     ]
   },
-  // {
-  //   path: "setting",
-  // },
   {
     path: 'setup',
     component: WifiConfigComponent,
