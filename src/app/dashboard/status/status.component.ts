@@ -31,6 +31,6 @@ export class StatusComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.status = this.route.snapshot.data.userdata;
+    this.status = this.route.snapshot.data.status;
   }
 }
