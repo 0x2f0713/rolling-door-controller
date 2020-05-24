@@ -27,12 +27,15 @@ export interface Config {
   providedIn: 'root',
 })
 export class ConfigService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  scanWifiUrl = '/scanWifi';
-  configUrl = '/setConfig';
+  scanWifiUrl = 'api/scan-ap';
+  configUrl = 'api/config';
   getWiFiList() {
     return this.http.get<Wifi[]>(this.scanWifiUrl);
+  }
+  getConfig() {
+    return this.http.get<Config>(this.configUrl);
   }
   setConfig(config: Config) {
     return this.http.post<Config>(this.configUrl, config);
