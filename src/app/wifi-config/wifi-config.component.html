@@ -1,0 +1,167 @@
+<div class="container h-100">
+  <div class="row h-100 justify-content-center align-items-center">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Thiết lập bộ điều khiển</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-horizontal-stepper linear>
+          <mat-step label="Quét Wi-Fi">
+            <button mat-flat-button color="primary" (click)="getWiFiList()">Scan Wi-Fi</button>
+            <mat-table [dataSource]="dataSource" *ngIf=dataSource>
+
+              <!-- Checkbox column -->
+              <ng-container matColumnDef="select">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let wifi">
+                  <mat-radio-button
+                    (click)="$event.stopPropagation(); chooseWifi(wifi)"
+                    (change)="$event ? selection.toggle(wifi) : null"
+                    [checked]="selection.isSelected(wifi)"
+                  >
+                  </mat-radio-button>
+                </mat-cell>
+              </ng-container>
+
+              <!-- Position Column -->
+              <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+                <mat-cell *matCellDef="let wifi">
+                  {{ wifi.id }}
+                </mat-cell>
+              </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="ssid">
+                <mat-header-cell *matHeaderCellDef>SSID</mat-header-cell>
+                <mat-cell *matCellDef="let wifi">{{ wifi.ssid }}</mat-cell>
+              </ng-container>
+
+              <!-- Weight Column -->
+              <ng-container matColumnDef="signal">
+                <mat-header-cell *matHeaderCellDef>Signal</mat-header-cell>
+                <mat-cell *matCellDef="let wifi">
+                  {{ wifi.signal }}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="mac_address">
+                <mat-header-cell *matHeaderCellDef>MAC Address</mat-header-cell>
+                <mat-cell *matCellDef="let wifi">
+                  {{ wifi.mac_address }}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="security">
+                <mat-header-cell *matHeaderCellDef>Security</mat-header-cell>
+                <mat-cell *matCellDef="let wifi">
+                  <div
+                    *ngIf="wifi.security; then thenBlock; else elseBlock"
+                  ></div>
+                  <ng-template #thenBlock>
+                    <i class="material-icons">lock</i></ng-template
+                  >
+                  <ng-template #elseBlock>
+                    <i class="material-icons">lock_open</i></ng-template
+                  >
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="wifi-credentials">
+                <mat-cell *matCellDef="let wifi">
+                  <div class="justify-content-center">
+                    <form>
+                      <p>
+                        <mat-form-field appearance="fill">
+                          <mat-label>Enter Wi-Fi password</mat-label>
+                          <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="config.wifi.password"[ngModelOptions]="{standalone: true}" />
+                          <button
+                            mat-icon-button
+                            matSuffix
+                            (click)="hide = !hide"
+                            [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hide"
+                          >
+                            <mat-icon>{{
+                              hide ? "visibility_off" : "visibility"
+                            }}</mat-icon>
+                          </button>
+                        </mat-form-field>
+                      </p>
+                      <p>
+                        <button
+                          mat-raised-button
+                          matStepperNext
+                          color="primary"
+                        >
+                          Next
+                        </button>
+                      </p>
+                    </form>
+                  </div>
+                </mat-cell>
+              </ng-container>
+
+              <mat-header-row
+                *matHeaderRowDef="displayedColumns"
+              ></mat-header-row>
+              <mat-row
+                *matRowDef="let wifi; columns: displayedColumns"
+                class="element-row"
+                [class.expanded]="choosedElement == wifi"
+                (click)="
+                  selection.isSelected(wifi) ? null : selection.toggle(wifi);
+                  chooseWifi(wifi)
+                "
+              ></mat-row>
+              <mat-row
+                *matRowDef="
+                  let row;
+                  columns: ['wifi-credentials'];
+                  when: isExpansionDetailRow
+                "
+                [@detailExpand]="
+                  row.element == choosedElement ? 'expanded' : 'collapsed'
+                "
+              ></mat-row>
+            </mat-table>
+          </mat-step>
+          <mat-step label="Máy chủ">
+            <form>
+              <p>
+                <mat-form-field>
+                  <mat-label>Địa chỉ máy chủ MQTT</mat-label>
+                  <input
+                    name="MqttAddress"
+                    matInput
+                    [(ngModel)]="config.mqtt.server"
+                    placeholder="VD: 546.lan hoặc 192.168.2.1"
+                  />
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field>
+                  <mat-label>Cổng máy chủ MQTT</mat-label>
+                  <input
+                    name="MqttPort"
+                    matInput
+                    [(ngModel)]="config.mqtt.port"
+                    placeholder="VD: 1883 hoặc 8883"
+                  />
+                </mat-form-field>
+              </p>
+              <button mat-raised-button matStepperNext color="primary">
+                Next
+              </button>
+            </form>
+          </mat-step>
+          <mat-step label="Xác nhận">
+            <p>Địa chỉ máy chủ MQTT: {{ config.mqtt.server }}</p>
+            <p>Cổng máy chủ MQTT: {{ config.mqtt.port }}</p>
+            <button mat-raised-button matStepperNext color="primary" (click)="setConfig()">
+              Hoàn thành
+            </button>
+          </mat-step>
+        </mat-horizontal-stepper>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
