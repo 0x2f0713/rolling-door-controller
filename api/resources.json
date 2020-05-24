@@ -1,0 +1,14 @@
+{
+    "status": {
+        "wifi": {
+            "status": "OK",
+            "ssid": "TP-Link",
+            "signal": 50
+        },
+        "mqtt": {
+            "status": "OK",
+            "server": "546.lan",
+            "port": 8883
+        }
+    }
+}

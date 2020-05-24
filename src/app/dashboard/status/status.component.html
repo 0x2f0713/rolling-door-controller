@@ -9,12 +9,9 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <p>
-            Status: OK
-          </p>
-          <p>
-            Wi-Fi: TP-Link
-          </p>
+          <p>Trạng thái: {{ status.wifi.status }}</p>
+          <p>Tên mạng Wi-Fi: {{ status.wifi.ssid }}</p>
+          <p>Tín hiệu: {{ status.wifi.signal }}</p>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
@@ -26,7 +23,9 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <div>Card Content Here</div>
+          <p>Trạng thái: {{ status.mqtt.status }}</p>
+          <p>Địa chỉ máy chủ: {{ status.mqtt.server }}</p>
+          <p>Cổng máy chủ: {{ status.mqtt.port }}</p>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

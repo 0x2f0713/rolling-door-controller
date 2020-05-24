@@ -5,6 +5,7 @@ import { WifiConfigComponent } from './wifi-config/wifi-config.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StatusComponent } from './dashboard/status/status.component';
 import { SettingComponent } from './dashboard/setting/setting.component';
+import { DashboardResolverService } from './services/dashboard/dashboard-resolver.service';
 
 
 
@@ -20,7 +21,10 @@ const routes: Routes = [
     children: [
       {
         path: "status",
-        component: StatusComponent
+        component: StatusComponent,
+        resolve: {
+          userdata: DashboardResolverService
+        }
       },
       {
         path: "setting",
