@@ -15,6 +15,6 @@ export class DashboardResolverService implements Resolve<Observable<any>>{
     return this.db.getStatus().pipe(
       take(1),
       map(status => status)
-    )
+    );
   }
 }

@@ -15,6 +15,6 @@ export class ConfigResolverService implements Resolve<Observable<any>>{
     return this.cf.getConfig().pipe(
       take(1),
       map(config => config)
-    )
+    );
   }
 }

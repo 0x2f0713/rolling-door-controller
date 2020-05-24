@@ -14,30 +14,30 @@ import { ConfigResolverService } from './services/config/config-resolver.service
 
 const routes: Routes = [
   {
-    path: "",
-    redirectTo: "dashboard/status",
-    pathMatch: "full",
+    path: '',
+    redirectTo: 'dashboard/status',
+    pathMatch: 'full',
   },
   {
-    path: "dashboard",
+    path: 'dashboard',
     component: DashboardComponent,
     children: [
       {
-        path: "status",
+        path: 'status',
         component: StatusComponent,
         resolve: {
           status: DashboardResolverService
         }
       },
       {
-        path: "setting",
+        path: 'setting',
         component: SettingComponent,
         resolve: {
           config: ConfigResolverService
         }
       },
       {
-        path: "controller",
+        path: 'controller',
         component: ControllerComponent
       }
     ]

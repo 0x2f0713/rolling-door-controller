@@ -23,13 +23,13 @@ export class SettingComponent implements OnInit {
     shipping: ['free', Validators.required]
   });
 
-  hide: boolean = true;
+  hide = true;
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private configService: ConfigService) { }
-  config: any
+  config: any;
   ngOnInit(): void {
-    this.config = this.route.snapshot.data.config
+    this.config = this.route.snapshot.data.config;
   }
   setConfig() {
-    this.configService.setConfig(this.config).subscribe((data: any) => console.log(data))
+    this.configService.setConfig(this.config).subscribe((data: any) => console.log(data));
   }
 }

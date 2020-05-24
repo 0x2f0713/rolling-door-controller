@@ -3,15 +3,15 @@ import { HttpClient } from '@angular/common/http';
 
 export interface Status {
   wifi: {
-    status: String,
-    ssid: String,
+    status: string,
+    ssid: string,
     signal: number
-  },
+  };
   mqtt: {
-    status: String,
-    server: String
+    status: string,
+    server: string
     port: number
-  }
+  };
 }
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export interface Status {
 export class DashboardService {
 
   constructor(private http: HttpClient) { }
-  getStatusUrl = "api/status"
+  getStatusUrl = 'api/status';
 
   getStatus() {
     return this.http.get<Status>(this.getStatusUrl);

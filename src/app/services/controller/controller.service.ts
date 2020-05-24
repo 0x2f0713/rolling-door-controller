@@ -7,17 +7,17 @@ import { HttpClient } from '@angular/common/http';
 export class ControllerService {
 
   constructor(private http: HttpClient) { }
-  controlUrl = "api/control";
+  controlUrl = 'api/control';
   sendUp() {
-    return this.http.post(this.controlUrl, "UP");
+    return this.http.post(this.controlUrl, 'UP');
   }
   sendDown() {
-    return this.http.post(this.controlUrl, "DOWN");
+    return this.http.post(this.controlUrl, 'DOWN');
   }
   sendStop() {
-    return this.http.post(this.controlUrl, "STOP");
+    return this.http.post(this.controlUrl, 'STOP');
   }
   sendLock() {
-    return this.http.post(this.controlUrl, "LOCK");
+    return this.http.post(this.controlUrl, 'LOCK');
   }
 }
