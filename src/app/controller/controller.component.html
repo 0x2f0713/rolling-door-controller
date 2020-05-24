@@ -1,0 +1,10 @@
+<mat-grid-list cols="2" rowHeight="2:1">
+  <mat-grid-tile (click)="sendUp()"
+    ><mat-icon>keyboard_arrow_up</mat-icon></mat-grid-tile
+  >
+  <mat-grid-tile (click)="sendDown()"
+    ><mat-icon>keyboard_arrow_down</mat-icon></mat-grid-tile
+  >
+  <mat-grid-tile (click)="sendStop()"><mat-icon>stop</mat-icon></mat-grid-tile>
+  <mat-grid-tile (click)="sendLock()"><mat-icon>lock</mat-icon></mat-grid-tile>
+</mat-grid-list>
